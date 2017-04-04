@@ -18,6 +18,8 @@ import java.util.Scanner;
  */
 public class MovieDownloader {
 
+	// sent an Ajax request to the omdbapi website and returns a collection of information related 
+	// to the movie 
 	public static String[] downloadMovieData(String movie) {
 
 		//construct the url for the omdbapi API

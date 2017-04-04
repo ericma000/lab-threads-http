@@ -10,26 +10,33 @@ import java.util.Random;
  * @author Joel Ross
  */
 public class SortRacer {
+	
+	class mergeSort implements Runnable {
+		public void run() {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss.SSSS"); //for output
+			Integer[] a2 = shuffled((int)Math.pow(10,7), 448); //a list of shuffled 10 million numbers
 
-	public static void main(String[] args) 
-	{
+			System.out.println("Starting merge sort at "+dateFormat.format(new Date()));
+			Sorting.mergeSort(nums);
+			System.out.println("Merge sort finished at "+dateFormat.format(new Date())+" !");
+		}
+	}
+	
+	class quickSort implements Runnable {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss.SSSS"); //for output
-		Integer[] nums;
-
-		
-		/** Merge Sort **/
-		nums = shuffled((int)Math.pow(10,7), 448); //a list of shuffled 10 million numbers
-
-		System.out.println("Starting merge sort at "+dateFormat.format(new Date()));
-		Sorting.mergeSort(nums);
-		System.out.println("Merge sort finished at "+dateFormat.format(new Date())+" !");
-
-		
-		/** Quick Sort **/
-		nums = shuffled((int)Math.pow(10,7), 448); //a list of shuffled 10 million numbers
+		Integer[] a1 = shuffled((int)Math.pow(10,7), 448); //a list of shuffled 10 million numbers
 		System.out.println("Starting quicksort at "+dateFormat.format(new Date()));
 		Sorting.quickSort(nums);
 		System.out.println("Quicksort finished at "+dateFormat.format(new Date())+" !");
+	}
+	
+	public static void main(String[] args) 
+	{
+		mergeSort m = new mergeSort();
+		quickSort s = new quickSort();
+		
+		m.start();
+		s.start();
 	}
 	
 	
